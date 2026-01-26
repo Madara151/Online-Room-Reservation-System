@@ -39,12 +39,18 @@ RoomType roomType = roomTypeDAO.findById(request.getRoomTypeId())
 .orElseThrow(() -> new RuntimeException("Room type not found"));
 
 
-LocalDate checkIn = LocalDate.parse(request.getCheckIn());
-LocalDate checkOut = LocalDate.parse(request.getCheckOut());
+LocalDate checkIn;
+LocalDate checkOut;
 
+try {
+    checkIn = LocalDate.parse(request.getCheckIn());
+    checkOut = LocalDate.parse(request.getCheckOut());
+} catch (Exception e) {
+    throw new RuntimeException("Invalid date format. Use YYYY-MM-DD");
+}
 
 if (!checkOut.isAfter(checkIn)) {
-throw new RuntimeException("Check-out date must be after check-in date");
+    throw new RuntimeException("Check-out date must be after check-in date");
 }
 
 

@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ocean View Resort | Help</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">OV</div>
+        <div>
+          <h1>Help</h1>
+          <p class="small">How to use the reservation system</p>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/reservations.html">Reservations</a>
+        <a href="/billing.html">Billing</a>
+        <a href="/reports.html">Reports</a>
+        <a class="active" href="/help.html">Help</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px;">
+      <h2>Quick Guide for Staff</h2>
+      <p class="small">Follow these steps to use the system smoothly.</p>
+
+      <hr/>
+
+      <h2 style="margin-top:0;">1) Login</h2>
+      <p class="small">
+        Open the system and login using your username and password.
+        If you are testing, you can register a staff user from the login page.
+      </p>
+
+      <h2>2) Add Reservation</h2>
+      <p class="small">
+        Go to Reservations page, fill guest details, select room type, enter dates in <b>YYYY-MM-DD</b> format,
+        and click <b>Save Reservation</b>.
+      </p>
+
+      <h2>3) View Reservation</h2>
+      <p class="small">
+        In Reservations page, use <b>Find Reservation</b> and search by Reservation No (e.g., R001).
+      </p>
+
+      <h2>4) Generate Bill</h2>
+      <p class="small">
+        Go to Billing page, enter Reservation No and click <b>Generate</b>. You can print using <b>Print</b>.
+      </p>
+
+      <h2>5) Reports</h2>
+      <p class="small">
+        Go to Reports page, enter From/To date range and load bookings or revenue.
+      </p>
+
+      <hr/>
+      <p class="small">
+        Common issues:
+        <br/>• If you get 401 error → your login token expired → login again.
+        <br/>• Date format must be YYYY-MM-DD.
+      </p>
+    </div>
+
+    <div class="footer">Ocean View Resort — Help Section</div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script>
+    if(!getToken()) window.location.href="/index.html";
+  </script>
+</body>
+</html>

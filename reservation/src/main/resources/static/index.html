@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ocean View Resort | Login</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">OV</div>
+        <div>
+          <h1>Ocean View Resort</h1>
+          <p>Room Reservation System</p>
+        </div>
+      </div>
+      <span class="badge">Secure Login</span>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Login</h2>
+        <p>Enter your username and password to continue.</p>
+
+        <div class="field">
+          <label>Username</label>
+          <input id="username" placeholder="e.g., admin" />
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input id="password" type="password" placeholder="Your password" />
+        </div>
+
+        <div class="btns">
+          <button class="primary" onclick="login()">Login</button>
+          <button onclick="register()">Register Staff (for testing)</button>
+        </div>
+
+        <div id="msg" class="toast"></div>
+      </div>
+
+      <div class="card">
+        <h2>Tips</h2>
+        <p class="small">
+          ✅ After login, the system stores a secure token.<br/>
+          ✅ You can add/view reservations, generate bills, and run reports.<br/>
+          ✅ Use correct date format: <b>YYYY-MM-DD</b>.
+        </p>
+        <hr/>
+        <p class="small">If you want, we can add “Admin only” features later.</p>
+      </div>
+    </div>
+
+    <div class="footer">© Ocean View Resort — Reservation System</div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ocean View Resort | Reservations</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">OV</div>
+        <div>
+          <h1>Reservations</h1>
+          <p class="small">Add new reservation or search existing reservation</p>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a href="/dashboard.html">Dashboard</a>
+        <a class="active" href="/reservations.html">Reservations</a>
+        <a href="/billing.html">Billing</a>
+        <a href="/reports.html">Reports</a>
+        <a href="/help.html">Help</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Add New Reservation</h2>
+        <p>Fill details and click Save.</p>
+
+        <div class="row">
+          <div class="field">
+            <label>Reservation No (e.g., R001)</label>
+            <input id="resNo" placeholder="R001" />
+          </div>
+          <div class="field">
+            <label>Guest Name</label>
+            <input id="guestName" placeholder="John Silva" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Address</label>
+            <input id="address" placeholder="Galle, Sri Lanka" />
+          </div>
+          <div class="field">
+            <label>Contact No</label>
+            <input id="contact" placeholder="0771234567" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Room Type</label>
+            <select id="roomType"></select>
+          </div>
+          <div class="field">
+            <label>Check-in Date (YYYY-MM-DD)</label>
+            <input id="checkIn" placeholder="2026-01-26" />
+          </div>
+          <div class="field">
+            <label>Check-out Date (YYYY-MM-DD)</label>
+            <input id="checkOut" placeholder="2026-01-28" />
+          </div>
+        </div>
+
+        <div class="btns">
+          <button class="primary" onclick="saveReservation()">Save Reservation</button>
+          <button onclick="clearForm()">Clear</button>
+        </div>
+
+        <div id="msgAdd" class="toast"></div>
+      </div>
+
+      <div class="card">
+        <h2>Find Reservation</h2>
+        <p>Search by reservation number.</p>
+
+        <div class="row">
+          <div class="field" style="min-width:260px;">
+            <label>Reservation No</label>
+            <input id="searchNo" placeholder="R001" />
+          </div>
+        </div>
+
+        <div class="btns">
+          <button class="primary" onclick="searchReservation()">Search</button>
+        </div>
+
+        <div id="msgSearch" class="toast"></div>
+
+        <hr/>
+
+        <div id="details" style="display:none;">
+          <span class="badge">Reservation Details</span>
+          <table class="table" style="margin-top:10px;">
+            <tbody id="detailBody"></tbody>
+          </table>
+          <div class="btns" style="margin-top:10px;">
+            <button onclick="copyBillNo()">Use this for Billing</button>
+          </div>
+          <p class="small" id="billHint"></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer">Tip: First load room types from DB, then add reservation.</div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/reservations.js"></script>
+</body>
+</html>

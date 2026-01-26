@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ocean View Resort | Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">OV</div>
+        <div>
+          <h1>Dashboard</h1>
+          <p id="who" class="small"></p>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a class="active" href="/dashboard.html">Dashboard</a>
+        <a href="/reservations.html">Reservations</a>
+        <a href="/billing.html">Billing</a>
+        <a href="/reports.html">Reports</a>
+        <a href="/help.html">Help</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Quick Actions</h2>
+        <p>Choose what you want to do.</p>
+        <div class="btns">
+          <button class="primary" onclick="go('/reservations.html')">Add / View Reservations</button>
+          <button onclick="go('/billing.html')">Generate Bill</button>
+          <button onclick="go('/reports.html')">View Reports</button>
+          <button onclick="go('/help.html')">Help</button>
+        </div>
+        <div id="msg" class="toast"></div>
+      </div>
+
+      <div class="card">
+        <h2>Room Types</h2>
+        <p>Loaded from database.</p>
+        <table class="table" id="rtTable">
+          <thead><tr><th>ID</th><th>Name</th><th>Rate/Night</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer">System status: connected to REST API</div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script>
+    // protect page
+    if(!getToken()) window.location.href="/index.html";
+
+    document.getElementById("who").textContent =
+      `Logged in as ${localStorage.getItem("username")} (${localStorage.getItem("role")})`;
+
+    function go(p){ window.location.href = p; }
+
+    async function loadRoomTypes(){
+      const res = await api("/api/room-types");
+      const tbody = document.querySelector("#rtTable tbody");
+      tbody.innerHTML = "";
+      (res?.data || []).forEach(x=>{
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${x.id}</td><td>${x.name}</td><td>${x.ratePerNight}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+    loadRoomTypes();
+  </script>
+</body>
+</html>

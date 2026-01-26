@@ -57,15 +57,18 @@
         <div class="row">
           <div class="field">
             <label>Room Type</label>
-            <select id="roomType"></select>
+            <select id="roomType">
+              <option value="">Loading room types…</option>
+            </select>
+            <div id="rtErr" class="toast"></div>
           </div>
           <div class="field">
-            <label>Check-in Date (YYYY-MM-DD)</label>
-            <input id="checkIn" placeholder="2026-01-26" />
+            <label>Check-in Date</label>
+            <input id="checkIn" type="date" />
           </div>
           <div class="field">
-            <label>Check-out Date (YYYY-MM-DD)</label>
-            <input id="checkOut" placeholder="2026-01-28" />
+            <label>Check-out Date</label>
+            <input id="checkOut" type="date" />
           </div>
         </div>
 
@@ -110,7 +113,7 @@
       </div>
     </div>
 
-    <div class="footer">Tip: First load room types from DB, then add reservation.</div>
+    <div class="footer">Tip: Date picker makes it easier. Room types load from DB.</div>
   </div>
 
   <script src="/js/app.js"></script>

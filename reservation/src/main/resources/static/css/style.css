@@ -1,9 +1,10 @@
 :root{
-  --bg:#0b1220;
-  --card:#111a2e;
-  --muted:#9aa4b2;
-  --text:#e8eefc;
-  --primary:#5b8cff;
+  --bg:#07160f;          /* darker green-black background */
+  --card:#0b2218;        /* card background */
+  --muted:#9fb7ac;       /* muted text */
+  --text:#e9fff6;        /* main text */
+  --primary:#22c55e;     /* ✅ green main */
+  --primary2:#16a34a;    /* ✅ deep green for gradients */
   --danger:#ff5b6a;
   --ok:#2dd4bf;
   --border:rgba(255,255,255,0.10);
@@ -18,8 +19,8 @@
 *{box-sizing:border-box}
 body{
   margin:0;
-  background: radial-gradient(1200px 500px at 20% 10%, rgba(91,140,255,0.25), transparent 60%),
-              radial-gradient(900px 400px at 80% 20%, rgba(45,212,191,0.20), transparent 55%),
+  background: radial-gradient(1200px 500px at 20% 10%, rgba(34,197,94,0.25), transparent 60%),
+              radial-gradient(900px 400px at 80% 20%, rgba(22,163,74,0.20), transparent 55%),
               var(--bg);
   color:var(--text);
   min-height:100vh;
@@ -27,18 +28,26 @@ body{
 a{color:inherit; text-decoration:none}
 .container{max-width:var(--max); margin:0 auto; padding:24px}
 .topbar{
-  display:flex; align-items:center; justify-content:space-between;
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between;
   padding:18px 20px;
-  border:1px solid var(--border);
-  background:rgba(17,26,46,0.65);
-  backdrop-filter: blur(10px);
+
+  background: linear-gradient(
+      135deg,
+      rgba(34,197,94,0.25),
+      rgba(22,163,74,0.35)
+  );
+
+  border:1px solid rgba(34,197,94,0.35);
+  backdrop-filter: blur(12px);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
 }
 .brand{display:flex; gap:12px; align-items:center}
 .logo{
   width:42px; height:42px; border-radius:14px;
-  background: linear-gradient(135deg, var(--primary), var(--ok));
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
   display:grid; place-items:center; font-weight:800;
 }
 .brand h1{font-size:18px; margin:0}
@@ -53,8 +62,8 @@ a{color:inherit; text-decoration:none}
 }
 .nav a.active, .nav a:hover{
   color:var(--text);
-  border-color:var(--border);
-  background:rgba(255,255,255,0.04);
+  border-color:rgba(34,197,94,0.45);
+  background: rgba(34,197,94,0.18);
 }
 
 .grid{
@@ -68,10 +77,15 @@ a{color:inherit; text-decoration:none}
 }
 
 .card{
-  background: rgba(17,26,46,0.72);
-  border:1px solid var(--border);
+  background: linear-gradient(
+      160deg,
+      rgba(34,197,94,0.12),
+      rgba(11,34,24,0.85)
+  );
+
+  border:1px solid rgba(34,197,94,0.25);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.45);
   padding: 18px;
 }
 .card h2{margin:0 0 10px; font-size:18px}
@@ -90,13 +104,13 @@ label{font-size:13px; color:var(--muted)}
 input, select{
   padding:12px 12px;
   border-radius:12px;
-  border:1px solid var(--border);
-  background:rgba(0,0,0,0.25);
+  border:1px solid rgba(34,197,94,0.25);
+  background: rgba(6,20,14,0.8);
   color:var(--text);
   outline:none;
 }
 input::placeholder{color:rgba(154,164,178,0.65)}
-input:focus, select:focus{border-color:rgba(91,140,255,0.6)}
+input:focus, select:focus{border-color:rgba(34,197,94,0.65)}
 
 .btns{display:flex; gap:10px; flex-wrap:wrap}
 button{
@@ -109,7 +123,7 @@ button{
   border:1px solid var(--border);
 }
 button.primary{
-  background: linear-gradient(135deg, rgba(91,140,255,1), rgba(45,212,191,0.95));
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
   border: none;
   font-weight:700;
 }
@@ -162,3 +176,42 @@ button:disabled{opacity:0.5; cursor:not-allowed; transform:none}
 }
 .small{font-size:13px; color:var(--muted)}
 hr{border:0; border-top:1px solid var(--border); margin:14px 0}
+
+/* --- Better select/date visibility --- */
+input[type="date"]{
+  color-scheme: dark; /* makes the date picker look good in dark UI */
+}
+
+select{
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+    linear-gradient(135deg, var(--muted) 50%, transparent 50%),
+    linear-gradient(to right, transparent, transparent);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 13px) calc(50% - 3px),
+    calc(100% - 2.5em) 50%;
+  background-size: 6px 6px, 6px 6px, 1px 1.6em;
+  background-repeat: no-repeat;
+  padding-right: 2.5em;
+}
+
+option{
+  background: #0b1220; /* fixes invisible options */
+  color: var(--text);
+}
+
+/* ===== Center Login Box ===== */
+
+.login-center{
+  min-height: calc(100vh - 140px); /* leaves space for topbar */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.login-card{
+  width:100%;
+  max-width:420px;
+}

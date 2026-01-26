@@ -1,4 +1,4 @@
-const API_BASE = ""; // same server (Spring Boot). If different: "http://localhost:8080"
+const API_BASE = ""; // same server
 
 function getToken() {
   return localStorage.getItem("token");
@@ -24,22 +24,29 @@ async function api(path, options = {}) {
 
   const res = await fetch(API_BASE + path, { ...options, headers });
 
-  // If unauthorized -> send back to login
+  const text = await res.text();
+
+  // If unauthorized -> back to login
   if (res.status === 401) {
     logout();
-    return;
+    return { message: "Session expired. Please login again.", data: null };
   }
 
-  const text = await res.text();
+  // If forbidden or other error show message
+  if (!res.ok) {
+    return { message: text || `Request failed (${res.status})`, data: null };
+  }
+
   try {
     return JSON.parse(text);
   } catch {
-    return { message: text, data: null };
+    return { message: text || "OK", data: null };
   }
 }
 
 function toast(id, msg, type="ok"){
   const el = document.getElementById(id);
+  if(!el) return;
   el.className = `toast show ${type === "ok" ? "ok" : "err"}`;
   el.textContent = msg;
 }

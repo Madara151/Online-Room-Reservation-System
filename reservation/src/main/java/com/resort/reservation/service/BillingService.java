@@ -1,5 +1,8 @@
 package com.resort.reservation.service;
 
-public class BillingService {
+import com.resort.reservation.dto.BillResponseDTO;
 
+
+public interface BillingService {
+BillResponseDTO generateBill(String reservationNo);
 }
